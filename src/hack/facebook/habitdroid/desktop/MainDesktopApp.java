@@ -66,7 +66,6 @@ public class MainDesktopApp extends JFrame {
 		webcamPanel.matToBufferedImage(matBGR);
 		webcamPanel.repaint();
 	}
-	
 
 	public void start() {
 		pack();
