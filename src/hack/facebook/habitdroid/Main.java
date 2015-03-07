@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 
 public class Main {
 
-	// a comment
+	// a commentsfisfhkwj
 	public static void main (String[] args) {
 		
 		// the main frame with three buttons
