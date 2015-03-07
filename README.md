@@ -9,6 +9,8 @@ Riyanat Shittu
 
 Jennifer Naiaretti
 
+Mihaela Trifu
+
 # Idea:
 
 Most humans depend heavily on using computers in the day to day lives. Without realising it, your eyes get strained, sometimes you build up health issues from slouching, not moving from the computer for hours, to not blinking and so much more. WE propose to build an desktop app that helps humans live a better day to day life by giving you hints when you violate something that. e.g. you haven't blinked in a while, haven't moved in a while, are slouching.
