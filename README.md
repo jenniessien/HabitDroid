@@ -6,6 +6,7 @@ Computer habit detection system.
 
 # Contributors:
 Riyanat Shittu
+
 Jennifer Naiaretti
 
 # Idea:
