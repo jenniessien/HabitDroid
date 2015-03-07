@@ -13,9 +13,6 @@ include_once('config.php');
 
 	function logEvent() {
 		$eventType = array('blink', 'movement', 'slouch');
-		$blink = "blink";
-		$movement = "movement";
-		$slouch = "slouch";
 
 		$type = htmlentities($_GET['type']);
 		$time = htmlentities($_GET['time']);
