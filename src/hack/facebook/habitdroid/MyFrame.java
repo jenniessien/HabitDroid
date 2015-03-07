@@ -28,7 +28,7 @@ public class MyFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MyFrame() {
+	public MyFrame() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 490);
 		contentPane = new JPanel();
