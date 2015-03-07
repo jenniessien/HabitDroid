@@ -1,7 +1,14 @@
+Facebook Hackathon!
+
 # HabitDroid
 Computer habit detection system.
 
-Idea:
+
+# Contributors:
+Riyanat Shittu
+Jennifer Naiaretti
+
+# Idea:
 
 Design and build a decentralised and personalised mobile phone application for supporting learners that stores learner artefacts (or links to them) as well as assessment results, chronological information, etc. and allows for real-time feedback about informal learning in situ – documenting “aha moments”. Then the information stored locally should be sent when needed to the School, but the whole idea would be to avoid a centralized server or learning management system. The assessment and credentialing could be based on the Open Badges stuff. The app should enable Grindr-like localization and selection of peers – find someone to learn with close by, and hook up with them (to study, of course).
 Digital volunteering – how could you use a decentralized app that plugs into your social networks to foster and support volunteering? Individual organizations have their own online systems to support their volunteers, but how could you help people who volunteer connect to each other, rather than rely on hierarchical structures of their respective organizations. The focus here could be on disaster risk reduction and community resilience – relevant in places that are seeing increasing frequency in disasters (think Philippines) and that have fairly good connectivity
@@ -21,9 +28,9 @@ Flu Tracking in the Social Age
 We all get sick, and we all pass on our colds to the people we know, but what if we could track the spread?
 From the user’s perspective: Track your symptoms and medicine intake in-app. Get tips and encouragement. Tell the app if you infect someone you know – send them an app invite and they will be able to do the same.
 From the administrator’s perspective: Unprecedented depth of data collection in real time about flu around the globe. Track particularly nasty strains of flu by location in real-time. See how flu spreads through a social circle.
-a mentoring matching service that creates 'knowledge sharing experiences' between people - so young people going out in the field can send a request to find people with related experience  to get advice, up-to-date information and specific details. 
+a mentoring matching service that creates 'knowledge sharing experiences' between people - so young people going out in the field can send a request to find people with related experience  to get advice, up-to-date information and specific details.
 Infectious Disease Tracking in Humanitarian Crises
-Infectious diseases often contribute to the human cost of a humanitarian emergency. The goal of this application is to provide an effective way for humanitarian aid workers to visualize the spread of various infectious diseases throughout the affected region. (example map ) 
+Infectious diseases often contribute to the human cost of a humanitarian emergency. The goal of this application is to provide an effective way for humanitarian aid workers to visualize the spread of various infectious diseases throughout the affected region. (example map )
 Tech stack:
 Bokeh, Flask, maybe deployed to Heroku
 
@@ -40,9 +47,3 @@ If we are being ADVENTUROUS we detect when you are slouching and send a notifica
 If we are VERY ADVENTUROUS we could detect when you last moved your face, when you last moved from the computer etc etc ;)
 
 Ideally this should be a background app that is always running on your computer but for demo purposes we could make it a normal desktop app with a UI.
-
-
-Contributors:
-Riyanat Shittu
-Jennifer Naiaretti
-
