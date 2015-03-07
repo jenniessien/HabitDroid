@@ -15,8 +15,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <source/>
-          <target/>
+          <source>1.7</source>
+          <target>1.7</target>
         </configuration>
       </plugin>      
 			<plugin>
@@ -25,7 +25,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>hack.facebook.habitdroid.desktop.DesktopLauncher</mainClass>
+							<mainClass>hack.facebook.habitdroid.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

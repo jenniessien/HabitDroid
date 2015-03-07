@@ -20,7 +20,7 @@ public class Server {
 	}
 	        
 	public boolean sendData(long timestamp, String event) throws Exception{		
-		URL url = new URL("http://jenni.gift/log_event.php?type=" + event + "&time=" + timestamp);
+		URL url = new URL("http://jenni.gift/generate/log_event.php?type=" + event + "&time=" + timestamp);
 	    String result = "";
 	    String data = "fName=" + URLEncoder.encode("Atli", "UTF-8");
 	    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
