@@ -13,7 +13,7 @@
             <h1>HabitDroid Dashboard</h1>
             <h3></h3>
             <button id="button">Blink / Slouch</button>
-        <script src="/js/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
         <script src=app.js></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
 		<script type="text/javascript">
@@ -168,7 +168,9 @@
                             .attr("class", "axis")
                             .attr("transform", "translate(" + padding + ",0)")
                             .call(yAxis);
-
+            
+            
+                fetchData();
 
         </script>
 	</body>
