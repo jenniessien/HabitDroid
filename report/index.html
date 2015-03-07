@@ -1,13 +1,177 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>HabitDroid</title>
-        <link rel="stylesheet" type="text/css" href="main.css">
-    </head>
-    <body>
-        <script src="http://d3js.org/d3.v3.min.js"></script>
-        <script type="text/javascript">    
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>HabitDroid</title>
+<!--		<link rel="stylesheet" href="/css/bootstrap.min.css">-->
+		<link rel="stylesheet" href="/main.css">
+        <link rel="stylesheet" href="/normalize.css">
+		<link href='http://fonts.googleapis.com/css?family=Raleway:900' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+            <h1>HabitDroid Dashboard</h1>
+            <h3></h3>
+            <button id="button">Blink / Slouch</button>
+        <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src=app.js></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
+		<script type="text/javascript">
+		            
+
+
+			//Width and height
+			var w = 800;
+			var h = 450;
+            var padding = 30;
+			
+			var dataset = [ 10, 10, 10, 10, 1130, 1115, 1200, 1190, 1100, 1170,
+							1120, 1050, 1115, 1119, 1120, 1190, 1210, 1150, 1120, 1125, 10, 10, 10, 10];
+			
+			var xScale = d3.scale.ordinal()
+							.domain(d3.range(dataset.length))
+							.rangeRoundBands([0, w], 0.05);
+
+			var yScale = d3.scale.linear()
+							.domain([0, d3.max(dataset)])
+							.range([0, h - padding]);
+    
+			
+            
+			//Create SVG element
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
+
+			//Create bars
+			svg.selectAll("rect")
+			   .data(dataset)
+			   .enter()
+			   .append("rect")
+			   .attr("x", function(d, i) {
+			   		return xScale(i) + padding;
+			   })
+			   .attr("y", function(d) {
+			   		return h - yScale(d) - padding;
+			   })
+			   .attr("width", xScale.rangeBand())
+			   .attr("height", function(d) {
+			   		return yScale(d);
+			   })
+			   .attr("fill", function(d) {
+					return "rgb(100, 0, " + (d * 10) + ")";
+			   });
+
+			//Create labels
+//			svg.selectAll("text")
+//			   .data(dataset)
+//			   .enter()
+//			   .append("text")
+//			   .text(function(d) {
+//			   		return d;
+//			   })
+//			   .attr("text-anchor", "middle")
+//			   .attr("x", function(d, i) {
+//			   		return xScale(i) + xScale.rangeBand() / 2;
+//			   })
+//			   .attr("y", function(d) {
+//			   		return h - yScale(d) + 14;
+//			   })
+//			   .attr("font-family", "sans-serif")
+//			   .attr("font-size", "11px")
+//			   .attr("fill", "white");
+
+
+
+			//On click, update with new data			
+			d3.select("button")
+				.on("click", function() {
+                
+                    dataset = [1, 1, 1, 1, 35, 40, 15, 50, 27, 18, 40, 30, 18, 33, 25, 16, 43, 26, 37, 10, 1, 1, 1, 1];
+
+					//New values for dataset
+//					var numValues = dataset.length;						//Count original length of dataset
+//					dataset = [];  						 				//Initialize empty array
+//					for (var i = 0; i < numValues; i++) {				//Loop numValues times
+//						var newNumber = Math.floor(Math.random() * 24 + 60); //New random integer
+//						dataset.push(newNumber);			 			//Add new number to array
+//					}
+
+                
+                var xScale = d3.scale.ordinal()
+							.domain(d3.range(dataset.length))
+							.rangeRoundBands([0, w], 0.05);
+
+			     var yScale = d3.scale.linear()
+							.domain([0, d3.max(dataset)])
+							.range([0, h - padding]);
+                
+                
+					//Update all rects
+					svg.selectAll("rect")
+					   .data(dataset)
+					   .transition()
+					   .delay(function(d, i) {
+						   return i / dataset.length * 1000;
+					   })
+					   .duration(500)
+					   .attr("y", function(d) {
+					   		return h - yScale(d) - padding;
+					   })
+					   .attr("height", function(d) {
+					   		return yScale(d);
+					   })
+					   .attr("fill", function(d) {
+							return "rgb(205, 51, 51)";
+					   });
+
+					//Update all labels
+//					svg.selectAll("text")
+//					   .data(dataset)
+//					   .transition()
+//					   .delay(function(d, i) {
+//						   return i / dataset.length * 1000;
+//					   })
+//					   .duration(500)
+//					   .text(function(d) {
+//					   		return d;
+//					   })
+//					   .attr("x", function(d, i) {
+//					   		return xScale(i) + xScale.rangeBand() / 2;
+//					   })
+//					   .attr("y", function(d) {
+//					   		return h - yScale(d) + 14;
+//					   });
+					   				
+				});
+            
+            //axis
+            var xAxis = d3.svg.axis()
+                                .scale(xScale)
+                                .orient("bottom")
+                                .ticks(5);
+            
+            var yAxis = d3.svg.axis()
+                                .scale(yScale)
+                                .orient("left")
+                                .ticks(24);
+                                
+                        //Create X axis
+                        svg.append("g")
+                            .attr("class", "axis")
+                            .attr("transform", "translate(0," + (h - padding) + ")")
+                            .call(xAxis);
+
+                        //Create Y axis
+                        svg.append("g")
+                            .attr("class", "axis")
+                            .attr("transform", "translate(" + padding + ",0)")
+                            .call(yAxis);
+            
+            
+                fetchData();
+
         </script>
-    </body>
+	</body>
 </html>

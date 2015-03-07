@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>HabitDroid</title>
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <button>Blink</button>
+<!--
+        <div class="col-md-4">
+            <div class="btn-toolbar" id="btnholder" role="toolbar" aria-label="...">
+               <button class="btn-group buttons clickables" id="button1" role="group" aria-label="...">Blink</button>
+               <button class="btn-group buttons clickables" id="button2" role="group" aria-label="...">Slouch</button>
+               <button class="btn-group buttons clickables" id="button3" role="group" aria-label="...">Move</button>
+	        </div>
+	</div>
+	<div class="col-md-8"><div id="timerDiv"></div></div>
+	<div class="col-md-6 col-md-offset-3">
+		<div id="graph"></div>
+		<div id="textBox">
+		</div>
+        </div>
+-->
+<script src="/js/jquery.min.js"></script>
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script type="text/javascript"> 
+            
+            
+
+			
+		
+            
+//            var dataset = [blinkArray, slouchArray, moveArray]
+//            var blinkArray = [{num: 1200}, {num: 1100}];// we need 24
+//            
+//            var h = 400;
+//            var w = 600;
+//            
+//            
+//			var xScale = d3.scale.ordinal()
+//							.domain(d3.range(dataset.length))
+//							.rangeRoundBands([0, w], 0.05),
+//				yScale = d3.scale.linear()
+//							.domain([0, d3.max(dataset, function(d) {return d.num})])
+//							.range([50, h]),
+//				cScale = d3.scale.linear()
+//							.domain( [d3.min(dataset, function(d) {return d.num}), d3.max(dataset, function(d) {return d.num})] )
+//							.rangeRound( [25, 50] ); //colour
+//			
+//			//Create SVG element for graph
+//			var svg = d3.select("#graph")
+//						.append("svg")
+//						.attr({	"width": w,
+//								"height": h
+//							});
+//
+//// colour
+//function colour(d) {
+//	switch (dataset){
+//		case (blinkArray):
+//			return "hsla(353, 100%, "  + (cScale(d.num)) + "%,1)";
+//		case (slouchArray):
+//			return "hsla(143, 90%, "  + (cScale(d.num)) + "%,1)";
+//		case (moveArray):
+//			return "hsla(240, 60%, " + (cScale(d.num)) + "%,1)";
+//		default:
+//			return "hsla(258, 0%, 100%, 1)";
+//	}					
+//}
+// ************************
+// *** Creating our time bar
+//var timeBar = svg3.selectAll("rect")
+//					.data(datasets)
+//					.enter()
+//					.append("rect")
+//timeBar.attr({
+//			"height": 30,
+//			"width": 20,
+//			"x": w3
+//		});
+//function datasets() {
+//		var now = new Date;
+//		return [{value: now.getSeconds()/60}];
+//	};
+//	function tick() {
+//		timeBar = timeBar.each(function(d) {this._value = d.value; })
+//					.data(datasets)
+//					.each(function(d) {d.previousValue = this._value; });
+//		timeBar.transition()
+//			.ease("elastic")
+//			.duration(400)
+//			.attr({	"x": function(d) {
+//						return w3 - (d.value*w3)
+//					},
+//					"width": function(d) {
+//						return d.value * w3
+//					},
+//					"fill": function(d) {
+//						return "hsla(" + (d.value * 500) + ",70%, 50%, 1)";
+//					}
+//			})
+//		setTimeout(tick, 1000 - Date.now() % 1000)
+//	}
+//tick()
+// --- End our timebar
+// ----------------------------
+// *************************************\\
+// *** Function for resetting boxes *** \\
+//function boxReset() {
+//	that = "headme";
+//	dataset = tempArray;
+//	gClass = "hyphen";
+//	var bars = svg.selectAll("rect")
+//			.data(dataset, function(d) {
+//		   		return d["textBody"];
+//		   	});
+//	d3.selectAll("g")
+//		.transition()
+//		.duration(1000)
+//		.attr({"class": gClass})
+//	d3.select("#textBox")
+//		.select("#voteNum")
+//		.transition()
+//		.duration(500)
+//		.text("");					
+//		
+//	d3.select("#voteText")
+//		.transition()
+//		.duration(500)
+//		.text("");
+//	bars.enter()
+//		.append("rect")
+//		.attr({"x": function(d, i) {
+//			   		return xScale(i);
+//			   },
+//			   "y": function(d) {
+//			   		return h - yScale(d.num);
+//			   },
+//			   "width": xScale.rangeBand(),
+//			   "height": function(d) {
+//			   		return yScale(d.num);
+//			   },
+//			   "fill": function(d) {
+//			   		return "rgb(250, 250, 250)";
+//			   	}					
+//			   });
+//	bars.transition()							//Initiate a transition on all elements in the update selection (all rects)
+//				.duration(1000)
+//				.attr({"x": function(d, i) {
+//			   		return xScale(i);
+//			    },
+//			    "y": function(d) {
+//			   		return h - yScale(d.num);
+//			    },
+//			    "width": xScale.rangeBand(),
+//			    "height": function(d) {
+//			   		return yScale(d.num);
+//			    },
+//			    "fill": function(d) {
+//			   		return "rgb(250, 250, 250)";
+//			   	}
+//			});
+//	bars.exit()				//References the exit selection (a subset of the update selection)
+//		.transition()		//Initiates a transition on the one element we're deleting
+//		.duration(1000)
+//		.attr({"y": h,
+//				"fill": function(d) {
+//	   				return "rgb(200, 200, 200)";
+//	   			}
+//	   		})	
+//		.remove();
+//	}
+// --- End function for resetting boxes --- \\
+// ---------------------------------------- \\
+// **************************************** \\
+// ******** Creating the bar graph ******** \\
+//svg.selectAll("rect")
+//   .data(dataset, function(d) {
+//   		return d["textBody"]
+//   	})
+//   .enter()
+//   .append("rect")
+//   .attr({	"x": function(d) {
+//   				return xScale(d);
+//   			},
+//   			"y": function(d) {
+//   				return h - yScale(d.num);
+//   			},
+//   			"width": xScale.rangeBand(),
+//   			"height": function(d) {
+//   				return yScale(d.num);
+//   			},
+//   			"fill": function(d) {
+//   				return colour(d)
+//   			}
+//   		})
+//   .on("mouseover", function(d, i) {
+//		d3.select("#textBox")
+//			.select("#voteNum")
+//			.text(d.rT);					
+//			
+//		d3.select("#voteText")
+//			.text(d["textBody"]);
+//		d3.select(this)
+//			.transition()
+//			.duration(250)
+//				.attr("fill", "orange");
+//			})
+//   .on("mouseout", function() {
+//   		d3.select(this)
+//   			.transition()
+//			.duration(250)
+//				.attr({
+//					"fill": function(d) {
+//		   				return colour(d)
+//		   			}
+//		   		})
+//  	});
+//			   		
+// -------- End creating bar graph -------- \\
+// ---------------------------------------- \\
+//d3.selectAll(".clickables")
+//	.on("click", function() {
+//		if ((d3.select(this).attr("id") === that) || (d3.select(this).attr("id") ==="headme")) {
+//			that = "headme"
+//			boxReset();
+//			return false;
+//		} else {
+//			that = d3.select(this).attr("id");
+//			console.log(that);
+//			switch (that) {
+//				case ("button1"):
+//					dataset = stopArray;
+//					gClass = "hyphenStop";
+//					break;
+//				case ("button2"):
+//					dataset = goArray;
+//					gClass = "hyphenGo";
+//					break;
+//				case ("button3"):
+//					dataset = contArray;
+//					gClass = "hyphenContinue";
+//					break;
+//				default:
+//					dataset = tempArray;
+//					break;
+//			}
+//			// Emptying the textbox on graph switch
+//			d3.select("#textBox")
+//				.select("#voteNum")
+//				.transition()
+//				.duration(500)
+//				.text("");
+//						
+//			d3.select("#voteText")
+//				.transition()
+//				.duration(500)
+//				.text("");
+//			updateBars()
+//		}
+//})
+//function updateBars() {
+//	// Updating scale domains to account for new values
+//	xScale.domain(d3.range(dataset.length));	
+//	yScale.domain([0, d3.max(dataset, function(d) {return d.num})]);
+//	cScale.domain( [d3.min(dataset, function(d) {return d.num}), d3.max(dataset, function(d) {return d.num})] );
+//	
+//	// Selecting all the rects, rebinding data
+//	var bars = svg.selectAll("rect")		
+//					.data(dataset, function(d) {
+//				   		return d["textBody"];
+//				   	});
+//				 						
+//	// The enter selection
+//	bars.enter()			
+//		.append("rect")
+//		.on("mouseover", function(d, i) {
+//			d3.select("#textBox")
+//				.select("#voteNum")
+//				.text(d.num);					
+//			d3.select("#voteText")
+//				.text(d["textBody"]);
+//			d3.select(this)
+//				.transition()
+//				.duration(250)
+//  				.attr("fill", "orange");
+//	    })
+//	   .on("mouseout", function() {
+//	   		d3.select(this)
+//	   			.transition()
+//				.duration(250)
+//  				.attr({
+//  					"fill": function(d) {
+//		   				return colour(d);
+//		   			}
+//				})
+//  		})
+//		.attr({
+//			"y": function(d) {	
+//				return h;
+//			},
+//			"width": xScale.rangeBand(),		//Sets the width value, based on the updated xScale
+//			"height": function(d) {			//Sets the height value, based on the updated yScale
+//				return yScale(d.num);
+//			},
+//			"fill": function(d) {
+//				return colour(d);
+//			}
+//		});
+//	//Update…
+//	bars.transition()							//Initiate a transition on all elements in the update selection (all rects)
+//		.duration(500)
+//		.attr({
+//			"x": function(d, i) {				//Set new x position, based on the updated xScale
+//				return xScale(i);
+//			},
+//			"y": function(d) {				//Set new y position, based on the updated yScale
+//				return h - yScale(d.num);
+//			},
+//			"width": xScale.rangeBand(),		//Set new width value, based on the updated xScale
+//			"height": function(d) {			//Set new height value, based on the updated yScale
+//				return yScale(d.num);
+//			},
+//			"fill": function(d) {
+//				console.log(colour(d))
+//				return colour(d);
+//			}
+//		});
+//	bars.exit()				//References the exit selection (a subset of the update selection)
+//		.transition()		//Initiates a transition on the one element we're deleting
+//		.duration(500)
+//		// .attr("x", w)
+//		.attr("y", h)		//Move past the right edge of the SVG
+//		.remove();
+//	d3.selectAll("g")
+//		.transition()
+//		.duration(1000)
+//		.attr({"class": gClass});
+//	svg.selectAll("text")
+//	   .data(dataset, function(d) {
+//	   		return d["textBody"]
+//	   	})
+//	   .transition()
+//	   .duration(500)
+//	   .text(function(d) {
+//	   		return d["textBody"];
+//	   })
+//	   .attr("x", function(d, i) {
+//			return xScale(i) + xScale.rangeBand() / 2;
+//	   })
+//	   .attr("y", function(d) {
+//			return h - yScale(d) + 14;
+//	   });
+//}
+// ---------------------------------
+// *********************************
+// **** Making the ajax calls
+//var fetchData = function(){
+//	$.ajax({
+//        // url: "http://localhost:5000/tweets",
+//        url: "https://stop-go-continue.herokuapp.com/tweets",
+//        success: function(data) {
+//            var temp = JSON.parse(data);
+//            stopArray = temp.stopArray;
+//            goArray = temp.goArray;
+//            contArray = temp.contArray;
+//            console.log("update!");
+//            switch (that) {
+//				case ("button1"):
+//					dataset = stopArray;
+//					break;
+//				case ("button2"):
+//					dataset = goArray;
+//					break;
+//				case ("button3"):
+//					dataset = contArray;
+//					break;
+//				default:
+//					dataset = stopArray;
+//					break;
+//			}
+//      		updateBars();
+//        }
+//    })
+//    setTimeout(fetchData, 5000);	
+//};
+//fetchData();
+            
+        
+        </script>
+    </body>
+</html>
