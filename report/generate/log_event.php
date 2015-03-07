@@ -1,9 +1,6 @@
 <?php
 
-CONST host = "localhost";
-CONST username = "root"; //set to server details
-CONST password = "root"; //set to server details
-CONST dbname = "habitdroid";
+include_once('config.php');
 
 	if (!empty($_GET)) {
 		if (!empty($_GET['type']) && !empty($_GET['time'])) {
@@ -32,7 +29,7 @@ CONST dbname = "habitdroid";
 			return false;
 		}
 
-		$db_handle = new mysqli(host, username, password, dbname);
+		$db_handle = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 		if ($db_handle->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
 		}
