@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<title>HabitDroid</title>
 <!--		<link rel="stylesheet" href="/css/bootstrap.min.css">-->
-		<link rel="stylesheet" href="/main.css">
+		<link rel="stylesheet" href="main.css">
         <link rel="stylesheet" href="/normalize.css">
 		<link href='http://fonts.googleapis.com/css?family=Raleway:900' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
@@ -169,7 +169,22 @@
                             .attr("transform", "translate(" + padding + ",0)")
                             .call(yAxis);
             
-            
+            var fetchData = function(){
+                    $.ajax({
+                        url: "http://jenni.gift/generate/get_report.php",
+                        success: function(data) {
+                            var temp = JSON.parse(data);
+
+//                            blinkArray = temp.blinkArray;
+//                            slouchArray = temp.slouchArray;
+
+                            console.log(data);
+
+                            
+                            }
+                    });
+                   // setTimeout(fetchData, 5000);	
+                };
                 fetchData();
 
         </script>
