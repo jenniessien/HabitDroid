@@ -1,4 +1,4 @@
-#!/usr/bin/env php
+
 <?php
 
 include_once('config.php');
@@ -6,7 +6,7 @@ include_once('config.php');
 logReports();
 
 	function logReports() {
-		echo "This script will run every minute.....";
+		// echo "This script will run every minute.....";
 
 		// find all blinks/movements/slouches within the hour just past. When cron runs at 14:00:00 Get count for 13:00:00 - 13:59:59 and delete them
 		$db_handle = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
@@ -34,7 +34,7 @@ logReports();
 	}
 
 	function logBlinksCount($db_handle) {
-		$generateBlinkReportQuery = "SELECT hour(`time`), count(*) FROM events WHERE `time` > now() - interval 24 hour AND type = 'blink' GROUP BY hour(`time`);";
+		$generateBlinkReportQuery = "SELECT hour(`time`) as time, count(*) as c FROM events WHERE `time` > now() - interval 24 hour AND type = 'blink' GROUP BY hour(`time`);";
 
 		// $getLastBlinkReportQuery = "SELECT `created` FROM blinks ORDER BY `created` DESC LIMIT 1";
 		$lastBlinkRecordResult = $db_handle->query($generateBlinkReportQuery);
@@ -50,12 +50,9 @@ logReports();
 			}
 		}
 
-		foreach ($results as $key => $value) {
-			foreach ($value as $count => $hour) {
-				echo $count;
-				echo $hour; die;
-				$saveCountQuery = "";
-			}
+		foreach ($results as $pos => $value) {
+			$saveCount = "INSERT INTO blinks(count, hr) values(".$value['c'].", ".$value['time'].");";
+			$result = $db_handle->query($saveCount);
 		}
 		// var_dump($results);
 	}
