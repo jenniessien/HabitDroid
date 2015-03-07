@@ -1,6 +1,6 @@
 var fetchData = function(){
                     $.ajax({
-                        url: "http://jenni.gift/get_report.php",
+                        url: "http://jenni.gift/generate/get_report.php",
                         success: function(data) {
                             var temp = JSON.parse(data);
 
