@@ -68,24 +68,28 @@ public class BlinkDetector {
 					avg += value;
 				}
 				avg /= heightHistory.size();
-				if (height * 1.05 < avg) {
-					System.out.println("Blink!: " + sdf.format(new Date()));
-					try {
-						server.sendData(new Date().getTime() / 1000, "blink");
-					}
-					catch (Exception e) {
-						System.out.println("Could not send data to the server: " + e.getMessage());
-					}
+				if (height * 1.07 < avg) { // closed eyes
+					handleBlickEvent();
+					heightHistory.clear();
 				}
 			}
 			heightHistory.add(height);		
 			Point center = new Point(rect.x + rect.width * 0.5, rect.y
 					+ height * 0.5);
-			Core.ellipse(mRgba, center, new Size(rect.width * 0.5,
-					height * 0.5), 0, 0, 360, new Scalar(255, 0, 255), 4,
-					8, 0);
+			Core.ellipse(mRgba, center, new Size(rect.width * 0.5, height * 0.5), 0, 0, 360, new Scalar(255, 0, 255), 4, 8, 0);
 		}
 		
 		return mRgba;
+	}
+
+	private void handleBlickEvent() {
+		System.out.println("Blink!: " + sdf.format(new Date()));
+		
+		try {
+			server.sendData(new Date().getTime() / 1000, "blink");
+		}
+		catch (Exception e) {
+			System.out.println("Could not send data to the server: " + e.getMessage());
+		}
 	}
 }

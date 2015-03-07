@@ -24,16 +24,14 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws Exception {
-		// the main frame with three buttons
-		JFrame MyFrame = new JFrame("My New Frame");
-		MyFrame.setLayout(new BoxLayout(MyFrame, BoxLayout.LINE_AXIS));
+		final JFrame mainFrame = new JFrame("HabitDroid");
+		mainFrame.setLayout(new BoxLayout(mainFrame, BoxLayout.LINE_AXIS));
+		mainFrame.setSize(400, 400);
+		mainFrame.setLayout(new FlowLayout());
+		mainFrame.setVisible(true);
 
-		MyFrame.setSize(400, 400);
-		MyFrame.setLayout(new FlowLayout());
-		MyFrame.setVisible(true);
-
-		JButton blickDetectionBtn = new JButton("Blink Detection");
-		MyFrame.add(blickDetectionBtn);
+		final JButton blickDetectionBtn = new JButton("Blink Detection");
+		mainFrame.add(blickDetectionBtn);
 
 		blickDetectionBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -58,7 +56,6 @@ public class Main {
 					}
 				}, 0, 100, TimeUnit.MILLISECONDS);		
 				mainPanel.start();
-
 			}
 		});
 	}
